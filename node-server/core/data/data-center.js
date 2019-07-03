@@ -23,7 +23,7 @@ var dataCenter = {
                 statusCode: config.response.statusCode.OK,
                 status: config.response.status.success,
                 message: config.response.messages.GET_ALL_PRODUCT_OK,
-                data: [response]
+                data: Object.values(productList)
             }
 
         } else {
@@ -64,6 +64,7 @@ var dataCenter = {
         var newData = sample;
         var newPostKey = ref.push().key;
         newData.id = newPostKey;
+        newData.productId = Number.parseInt(newData.productId);
 
 
 
@@ -77,8 +78,8 @@ var dataCenter = {
         return {
             statusCode: config.response.statusCode.OK,
             status: config.response.status.success,
-            message: `${config.response.messages.GET_ALL_PRODUCT_OK}`,
-            data: [insertedData]
+            message: `${config.response.messages.ADD_PRODUCT_OK}`,
+            data: Object.values(insertedData)
         };
 
     },
@@ -92,7 +93,7 @@ var dataCenter = {
                 statusCode: config.response.statusCode.OK,
                 status: config.response.status.success,
                 message: `${config.response.messages.SEARCH_OK}`,
-                data: [search]
+                data: Object.values(search)
             }
         }
         else {
@@ -126,7 +127,7 @@ var dataCenter = {
                 statusCode: config.response.statusCode.OK,
                 status: config.response.status.success,
                 message: `${config.response.messages.DELETE_OK}`,
-                data: [search]
+                data: Object.values(search)
             }
         }
         else {
@@ -158,7 +159,7 @@ var dataCenter = {
                 statusCode: config.response.statusCode.OK,
                 status: config.response.status.success,
                 message: `${config.response.messages.UPDATE_OK}`,
-                data: [updatedRecord]
+                data: Object.values(updatedRecord)
             };
         } else {
             return {
@@ -184,6 +185,7 @@ var dataCenter = {
 
                 db.ref(`${uri}`).orderByChild('productId')
                     .equalTo(id)
+
                     .once('value')
                 ;
             // .once('value');

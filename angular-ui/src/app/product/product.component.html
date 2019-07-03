@@ -1,0 +1,115 @@
+<div class="container">
+
+  <div class="col-lg-offset-4 col-lg-4">
+    <button mat-raised-button [routerLink]="['/all-product/']"> home </button>
+
+    <h3>Add/Update Product</h3>
+    <br>
+    <div *ngIf='!disableSearchOnAdd'>
+      <form [formGroup]="searchDeleteForm" class="form-pad example-container">
+
+        <mat-form-field class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+          <input matInput formControlName='productId' placeholder="productId">
+          <mat-error
+            *ngIf="!searchDeleteForm.controls['productId'].valid && searchDeleteForm.controls['productId'].touched">
+            Enter Valid productId
+          </mat-error>
+
+        </mat-form-field>
+
+
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12" class="form-action">
+
+          <button [disabled]="!searchDeleteForm.valid" (click)="submit(operation.search,searchDeleteForm.value)"
+            mat-raised-button color='primary'>
+            {{setSearchButtonName }}
+          </button>
+
+        </div>
+      </form>
+    </div>
+    <h3></h3>
+    <div *ngIf='showProductForm'>
+
+      <form [formGroup]="addEditForm" class="form-pad example-container">
+
+
+        <mat-form-field class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+          <input matInput formControlName='productId' placeholder="productId">
+          <mat-error *ngIf="!addEditForm.controls['productId'].valid && addEditForm.controls['productId'].touched">
+            Enter Valid productId
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+          <input matInput formControlName='name' placeholder="productName">
+
+          <mat-error *ngIf="!addEditForm.controls['name'].valid && addEditForm.controls['name'].touched">
+            Enter Valid productName
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+          <input matInput formControlName='productCode' placeholder="productCode">
+
+          <mat-error *ngIf="!addEditForm.controls['productCode'].valid && addEditForm.controls['productCode'].touched">
+            Enter Valid Product Code
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+          <input matInput formControlName='price' placeholder="price">
+
+          <mat-error *ngIf="!addEditForm.controls['price'].valid && addEditForm.controls['price'].touched">
+            Enter Valid price
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+          <input matInput formControlName='starRating' placeholder="starRating">
+
+          <mat-error *ngIf="!addEditForm.controls['starRating'].valid && addEditForm.controls['starRating'].touched">
+            Enter Valid starRating
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+          <input matInput formControlName='imageUrl' placeholder="imageUrl">
+
+          <mat-error *ngIf="!addEditForm.controls['imageUrl'].valid && addEditForm.controls['imageUrl'].touched">
+            Enter Valid imageUrl
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+          <input matInput formControlName='releaseDate' placeholder="releaseDate">
+
+          <mat-error *ngIf="!addEditForm.controls['releaseDate'].valid && addEditForm.controls['releaseDate'].touched">
+            Enter Valid releaseDate
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12" class="form-action">
+
+
+          <button [disabled]="!addEditForm.valid"
+            (click)="selectedOperation=='add'? submit(operation.add,addEditForm.value):submit(operation.update,addEditForm.value)"
+            mat-raised-button color='primary'>
+            {{selectedOperation=="add" ? "Add":"Update" }}
+          </button>
+          <button *ngIf='this.selectedOperation=="update"' [disabled]="!addEditForm.valid"
+            (click)="submit(operation.delete,addEditForm.value)" mat-raised-button color='accent'>
+            delete
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="container" *ngIf='showResponse'>
+      Response From the Server: <br>
+      Status Code : {{response?.statusCode}} <br>
+      Status : {{response?.status}} <br>
+      Message : {{response?.message}} <br>
+    </div>
+
+  </div>
+</div>

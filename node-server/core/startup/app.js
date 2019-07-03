@@ -4,13 +4,18 @@ const morgan = require('morgan');
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
-// const config = require('./config')
+const cors = require('cors');
+
+const config = require('./config')
 
 
 app.use(morgan('dev'));
 
 // import body-parser 
-// app.use(corsOrigin);
+app.use(cors({
+    origin: config.corsOrigins,
+    credentials: true
+}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -20,7 +25,6 @@ app.use(cookieParser());
 // defining routes 
 const productAPi = require('../rest-api/index')
 app.use('', productAPi);
-
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

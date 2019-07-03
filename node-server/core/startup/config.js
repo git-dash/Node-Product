@@ -30,7 +30,10 @@ var configExport = {
         search: '/search',
         delete: '/delete',
         update: '/update',
-    }
+    },
+    corsOrigins: [
+        "http://localhost:4200",
+    ],
 
 }
 
