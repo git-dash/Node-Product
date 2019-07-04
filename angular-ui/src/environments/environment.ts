@@ -1,7 +1,7 @@
 
 export const environment = {
   production: false,
-  applicationURI: `http://localhost:3001`,
+  applicationURI: `http://localhost:3000`,
   operation: {
     add: 'add',
     update: 'update',

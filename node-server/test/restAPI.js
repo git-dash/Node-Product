@@ -17,7 +17,7 @@ describe('Testing Node Rest API', function () {
     after(function () {
         require('../core/startup/server').stop();
     });
-    var applicationUrl = 'http://localhost:3001';
+    var applicationUrl = 'http://localhost:3000';
     var requester = chai.request.agent(applicationUrl);//to keep the same session; without requester agent the get or post will act as opening a new window
 
 
@@ -42,8 +42,8 @@ describe('Testing Node Rest API', function () {
         console.log(`${JSON.stringify(response.body)}`);
     })
 
-    it(`should search for id:91`, async () => {
-        var searchId = '91';
+    it(`should search for id:1`, async () => {
+        var searchId = '1';
         var response = await requester
             .get(`/search/${searchId}`);
 
